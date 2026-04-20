@@ -1,0 +1,18 @@
+CIUDADES PRINCIPALES:
+
+- EL CALAFATE, GREGORES, SAN JULIAN
+
+RUTAS
+-calafate=> gregores (RP11, RN40)
+-calafate => tres lagos(RP11, RN40) => gregores (RN288, RP71, RP27)
+-calafate => tres lagos(RP11, RN40) => rio chico(RN288, RP71)=> san julian (RN3)=> gregores (RP25)
+
+-calafate => san julian (RP11, RN40, RN288, RN3)
+-calafate=> alke guer (RP11, RN40) => san julian (RN3)
+-calafate => gendarme barreto (RP11, RN40, RP9) => san julian(RP9, RN3)
+
+-gregores=> san julian (RP27, RN288, RN3)
+-gregores=> san julian (RP25, RN3)
+-gregores=> tres cerros (RP25, RP12, RP49, RN3) => san julian(RN3)
+
+LINK A LA MATRIZ https://docs.google.com/spreadsheets/d/13sL88dRz-rKP5ov7vEAxL2XTVImxNgeitesY9LwTL28/edit?hl=es&gid=0#gid=0
