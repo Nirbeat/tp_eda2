@@ -1,3 +1,7 @@
+#include <iostream>
+
+using namespace std;
+
 struct Coordenadas {
   int x;
   int y;
