@@ -11,6 +11,6 @@ RUTAS
 -calafate=> alke guer (RP11, RN40) => san julian (RN3)
 -calafate => gendarme barreto (RP11, RN40, RP9) => san julian(RP9, RN3)
 
--gregores=> san julian (RP27, RN288, RN3)
--gregores=> san julian (RP25, RN3)
+-gregores=> san julian (RP25)
+-gregores=> luis piedrabuena (RP27, RN288, RN3) => san julian (RP25, RN3)
 -gregores=> pico truncado(RP25, RP12) => san julian(RP43, RN3)
