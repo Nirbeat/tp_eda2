@@ -1,0 +1,26 @@
+# Archivos compilados
+*.obj
+*.o
+*.exe
+*.dll
+
+# Archivos temporales de C++ Builder
+*.dcu
+*.identcache
+*.local
+*.tvsconfig
+
+# Historial y cachés
+__history/
+*.~*
+
+# Carpetas de compilación
+Debug/
+Release/
+Win32/Debug/
+Win32/Release/
+Win64/Debug/
+Win64/Release/
+
+# Archivos de usuario
+*.cbproj.local
