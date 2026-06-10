@@ -5,9 +5,11 @@
 
 class Ciudad {
 public:
-  char nombre[30];
-  struct Coordenadas coordenadas;
-  int id;
+    char nombre[30];
+    struct Coordenadas coordenadas;
+    int id;
+    Ciudad();
+    Ciudad(int id, const char* nombre, struct Coordenadas coordenadas);
 };
 
 #endif

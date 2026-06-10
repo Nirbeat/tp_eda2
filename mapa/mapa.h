@@ -6,19 +6,26 @@
 
 using namespace std;
 
-class Mapa {
+// Esta constante fija es obligatoria para la matriz estática
+const int MAX_MATRIZ = 7;
 
+class Mapa {
 private:
-  std::string imagen; // ruta de la imagen de fondo a cargar
-  Ciudad nodos[7];
-  int matrizAdyacencia[7][7];
+    Ciudad* listaCiudades; // Puntero para el array dinámico (este SÍ se maneja en ejecución)
+    int cantidadActual;    // Cuántas ciudades reales hay en el mapa (ej: arranca en 1)
+    
+    // CORREGIDO: Usamos MAX_MATRIZ (7) y NO cantidadActual
+    int matrizAdyacencia[MAX_MATRIZ][MAX_MATRIZ];
 
 public:
-  void ubicarNodos();
-  void cargarImagen();
-  void setMatriz();
-  int distanciaNodos(int idOrigen, int idDestino);
-  void setNodos();
+    Mapa();
+    ~Mapa(); 
+
+    void leerArchivo();
+    int obtenerCiudades(Ciudad arrayDestino[]) const;
+    void cargarMatriz();
+    int distanciaNodos(int idOrigen, int idDestino);
+    void ubicarNodos(); 
 };
 
 #endif
