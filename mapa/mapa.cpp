@@ -3,9 +3,9 @@
 
 // Constructor
 Mapa::Mapa() {
-    cantidadActual = 1; // Dejamos cargada 1 ciudad por ahora
-    listaCiudades = new Ciudad[cantidadActual]; // Reservamos la memoria exacta
-    leerArchivo(); // Llamamos a rellenar la ciudad [0]
+	cantidadCiudades = 1; // Dejamos cargada 1 ciudad por ahora
+	listaCiudades = new Ciudad[cantidadCiudades]; // Reservamos la memoria exacta
+	leerArchivo(); // Llamamos a rellenar la ciudad [0]
 }
 
 // Destructor
@@ -19,11 +19,11 @@ void Mapa::leerArchivo() {
     // Acá irá la lectura del archivo más adelante
 }
 
-int Mapa::obtenerCiudades(Ciudad arrayDestino[]) const {
-    for (int i = 0; i < cantidadActual; i++) {
-        arrayDestino[i] = listaCiudades[i];
-    }
-    return cantidadActual;
+int Mapa::obtenerCiudades(Ciudad ciudadesInterfaz[]) const {
+	for (int i = 0; i < cantidadCiudades; i++) {
+		ciudadesInterfaz[i] = listaCiudades[i];
+	}
+    return cantidadCiudades;
 }
 
 void Mapa::cargarMatriz() {

@@ -1568,14 +1568,6 @@ object Form1: TForm1
           ExplicitWidth = 1440
           ExplicitHeight = 959
         end
-        object ComboBox2: TComboBox
-          Left = 619
-          Top = 322
-          Width = 22
-          Height = 23
-          Style = csDropDownList
-          TabOrder = 0
-        end
       end
       object Panel4: TPanel
         Left = 10

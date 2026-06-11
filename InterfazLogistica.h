@@ -54,7 +54,6 @@ __published:
 	TPanel *btnLimpiarCampos;
 	TPanel *btnGuardarHistorial;
 	TLabel *lblCiudadOrigen;
-	TComboBox *ComboBox2;
 
 void __fastcall PanelMouseEnter(TObject *Sender);
 void __fastcall PanelMouseLeave(TObject *Sender);

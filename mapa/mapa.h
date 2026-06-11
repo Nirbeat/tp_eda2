@@ -1,8 +1,8 @@
-#ifndef MAPA_H
+﻿#ifndef MAPA_H
 #define MAPA_H
 
 #include "../ciudad/ciudad.h"
-#include <string>
+#include <string.h>
 
 using namespace std;
 
@@ -10,22 +10,24 @@ using namespace std;
 const int MAX_MATRIZ = 7;
 
 class Mapa {
+
 private:
-    Ciudad* listaCiudades; // Puntero para el array dinámico (este SÍ se maneja en ejecución)
-    int cantidadActual;    // Cuántas ciudades reales hay en el mapa (ej: arranca en 1)
-    
-    // CORREGIDO: Usamos MAX_MATRIZ (7) y NO cantidadActual
-    int matrizAdyacencia[MAX_MATRIZ][MAX_MATRIZ];
+  Ciudad *listaCiudades; // Puntero para el array dinámico 
+  int cantidadCiudades; //  se asigna en construccion y se usa para
+						//guardar la memoria tanto de ciudades como de la matriz
+
+  // CORREGIDO: Usamos MAX_MATRIZ (7) y NO cantidadActual
+  int matrizAdyacencia[MAX_MATRIZ][MAX_MATRIZ];
 
 public:
-    Mapa();
-    ~Mapa(); 
+  Mapa();
+  ~Mapa();
 
-    void leerArchivo();
-    int obtenerCiudades(Ciudad arrayDestino[]) const;
-    void cargarMatriz();
-    int distanciaNodos(int idOrigen, int idDestino);
-    void ubicarNodos(); 
+  void leerArchivo();
+  int obtenerCiudades(Ciudad arrayDestino[]) const;
+  void cargarMatriz();
+  int distanciaNodos(int idOrigen, int idDestino);
+  void ubicarNodos();
 };
 
 #endif
