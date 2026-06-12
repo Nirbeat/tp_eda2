@@ -1,49 +1,59 @@
 ﻿#include "mapa.h"
-#include <cstddef> // Para usar NULL
 
 // Constructor
 Mapa::Mapa() {
-	cantidadCiudades = 1; // Dejamos cargada 1 ciudad por ahora
-	listaCiudades = new Ciudad[cantidadCiudades]; // Reservamos la memoria exacta
-	leerArchivo(); // Llamamos a rellenar la ciudad [0]
+  // 1-se lee el archivo de la matriz de adyacencia y se cuentan la cantidad
+  // de registros segun saltos de linea
+  // 2-se asigna ese número a cantidadCiudades
+  // 3-se cargan las ciudades en Lista ciudades
+  // 4-se carga el puntero en matrizaAdyacencia
 }
 
 // Destructor
 Mapa::~Mapa() {
-    if (listaCiudades != NULL) {
+    if (listaCiudades != nullptr) {
         delete[] listaCiudades;
-    }
-}
-
-void Mapa::leerArchivo() {
-    // Acá irá la lectura del archivo más adelante
-}
-
-int Mapa::obtenerCiudades(Ciudad ciudadesInterfaz[]) const {
-	for (int i = 0; i < cantidadCiudades; i++) {
-		ciudadesInterfaz[i] = listaCiudades[i];
 	}
-    return cantidadCiudades;
-}
-
-void Mapa::cargarMatriz() {
-    int matriz[7][7] = {
-        {0, 335, 504, 314, 277, 105, -1}, 
-        {335, 0, 312, 122, -1, -1, 607},
-        {504, 312, 0, -1, 331, 302, 338}, 
-        {314, 122, -1, 0, -1, -1, -1},
-        {277, -1, 331, -1, 0, -1, -1},    
-        {105, -1, 302, -1, -1, 0, -1},
-        {-1, 607, 338, -1, -1, -1, 0}
-    };
-
-    for (int i = 0; i < 7; i++) {
-        for (int j = 0; j < 7; j++) { 
-            this->matrizAdyacencia[i][j] = matriz[i][j];
+	if (matrizAdyacencia != nullptr) {
+        for (int i = 0; i < cantidadCiudades; i++) {
+            delete[] matrizAdyacencia[i];
         }
+		delete[] matrizAdyacencia;
     }
 }
 
-int Mapa::distanciaNodos(int idOrigen, int idDestino) {
-    return this->matrizAdyacencia[idOrigen][idDestino];
+void Mapa::actualizarCantidadCiudades(int valor) {
+  cantidadCiudades += valor; // se suma positivo o negativo, siempre 1
 }
+
+void Mapa::pasarListaCiudades(Ciudad ciudadesInterfaz[]) {
+  // se recupera listaCiudades y se le pasa a la lista que deberia tener la
+  // UI para que pinte en el mapa
+
+  for (int i = 0; i < cantidadCiudades; i++) {
+    ciudadesInterfaz[i] = listaCiudades[i];
+  }
+}
+int Mapa::obtenerCantidadCiudades() { return cantidadCiudades; }
+
+int** Mapa::obtenerMatrizAdyacencia(){
+	return matrizAdyacencia;
+}
+//esto que sigue ignorar por ahora
+// void Mapa::cargarMatriz() {
+//	int matriz[7][7] = {
+//         {0, 335, 504, 314, 277, 105, -1},
+//         {335, 0, 312, 122, -1, -1, 607},
+//         {504, 312, 0, -1, 331, 302, 338},
+//         {314, 122, -1, 0, -1, -1, -1},
+//         {277, -1, 331, -1, 0, -1, -1},
+//         {105, -1, 302, -1, -1, 0, -1},
+//         {-1, 607, 338, -1, -1, -1, 0}
+//     };
+//
+//     for (int i = 0; i < 7; i++) {
+//         for (int j = 0; j < 7; j++) {
+//             this->matrizAdyacencia[i][j] = matriz[i][j];
+//         }
+//     }
+// }
