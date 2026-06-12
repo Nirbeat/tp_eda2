@@ -29,10 +29,15 @@ void Mapa::actualizarCantidadCiudades(int valor) {
 void Mapa::pasarListaCiudades(Ciudad ciudadesInterfaz[]) {
   // se recupera listaCiudades y se le pasa a la lista que deberia tener la
   // UI para que pinte en el mapa
-
+  //seria algo como lo que sigue pero hay que revisar
   for (int i = 0; i < cantidadCiudades; i++) {
-    ciudadesInterfaz[i] = listaCiudades[i];
+	ciudadesInterfaz[i] = listaCiudades[i];
   }
+
+  //mucha atencion aca: cuando se copia el array en la UI, hay que en base a ese
+  //array dinamico, pintar las ciudades, tal como el trabajo que hizo Matias
+  //hardcodeado. Lo que hay que hacer solamente es leer la data del array
+  //que se copia mediante este método
 }
 int Mapa::obtenerCantidadCiudades() { return cantidadCiudades; }
 
