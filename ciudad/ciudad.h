@@ -4,12 +4,20 @@
 #include "../structs.h"
 
 class Ciudad {
+private:
+  char nombre[30];
+  struct Coordenadas coordenadas;
+  int id;
+  bool activa;
+
 public:
-    char nombre[30];
-    struct Coordenadas coordenadas;
-    int id;
-    Ciudad();
-    Ciudad(int id, const char* nombre, struct Coordenadas coordenadas);
+  Ciudad();
+  Ciudad(int id, const char *nombre, struct Coordenadas coordenadas);
+  char *obtenerNombre();
+  struct Coordenadas obtenerCoordenadas();
+  int obtenerId();
+  bool obtenerEstado();
+  void cambiarEstado();
 };
 
 #endif

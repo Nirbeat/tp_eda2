@@ -5,7 +5,7 @@ Mapa::Mapa() {
   // 1-se lee el archivo de la matriz de adyacencia y se cuentan la cantidad
   // de registros segun saltos de linea
   // 2-se asigna ese número a cantidadCiudades
-  // 3-se cargan las ciudades en Lista ciudades
+  // 3-se cargan las ciudades en listaCiudades
   // 4-se carga el puntero en matrizaAdyacencia
 }
 
@@ -27,18 +27,24 @@ void Mapa::actualizarCantidadCiudades(int valor) {
 }
 
 void Mapa::pasarListaCiudades(Ciudad ciudadesInterfaz[]) {
-  // se recupera listaCiudades y se le pasa a la lista que deberia tener la
-  // UI para que pinte en el mapa
-  //seria algo como lo que sigue pero hay que revisar
-  for (int i = 0; i < cantidadCiudades; i++) {
-	ciudadesInterfaz[i] = listaCiudades[i];
-  }
+    // Usamos un contador propio para el array de la UI
+    int indiceUI = 0;
+
+    for (int i = 0; i < cantidadCiudades; i++) {
+        // Accedemos con corchetes [i] y llamamos al método con ()
+        if (listaCiudades[i].obtenerEstado() == true) {
+            // Si está activa, la copiamos en la posición consecutiva de la UI
+            ciudadesInterfaz[indiceUI] = listaCiudades[i];
+            indiceUI++; // Recién acá avanzamos al siguiente casillero de la pantalla
+        }
+    }
+}
 
   //mucha atencion aca: cuando se copia el array en la UI, hay que en base a ese
   //array dinamico, pintar las ciudades, tal como el trabajo que hizo Matias
   //hardcodeado. Lo que hay que hacer solamente es leer la data del array
   //que se copia mediante este método
-}
+
 int Mapa::obtenerCantidadCiudades() { return cantidadCiudades; }
 
 int** Mapa::obtenerMatrizAdyacencia(){
