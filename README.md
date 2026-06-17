@@ -1,4 +1,4 @@
-# tp_eda2 — Gestión Logística · Provincia de Santa Cruz
+# Trabajo Practico EDA 2 — Gestión Logística · Provincia de Santa Cruz
 
 ## Sobre el Proyecto
 
@@ -31,9 +31,9 @@ Proyecto Final > Asignatura: Estructuras de Datos y Algoritmos II > Universidad 
 | Pintado de ciudades y conexiones | listo |
 | Vista de gestión de ciudades | listo |
 | Vista de gestión de rutas | listo |
-| Dijkstra | en desarrollo |
+| Dijkstra | listo |
 | Agregar / eliminar ciudades | en desarrollo |
-| Historial de rutas | en desarrollo |
+| Historial de rutas | listo |
 | Corte de rutas | en desarrollo |
 
 ## Estructura
