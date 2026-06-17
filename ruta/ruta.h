@@ -8,6 +8,7 @@ class Ruta {
 public:
 	Ruta();
 	struct ResultadoRuta encontrarRuta(int** matriz, int cantidadCiudad, int idOrigen, int idDestino);
+    void guardarEnHistorial(struct ResultadoRuta resultado, Ciudad* ciudadesUI);
 };
 
 #endif

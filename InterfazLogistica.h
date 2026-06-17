@@ -3,7 +3,6 @@
 #ifndef InterfazLogisticaH
 #define InterfazLogisticaH
 //---------------------------------------------------------------------------
-#include "Logistica.h"
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.ExtCtrls.hpp>
@@ -49,8 +48,6 @@ class TForm1 : public TForm {
   TPanel *pnlHistorial;
   TComboBox *cbOrigen;
   TComboBox *cbDestino;
-  TPanel *btnCalcularRutaOptima;
-  TPanel *btnLimpiarCampos;
   TPanel *btnGuardarHistorial;
   TLabel *lblCiudadOrigen;
 	TPanel *pnlCiudades;
@@ -62,13 +59,9 @@ class TForm1 : public TForm {
   void __fastcall BtnCiudadesClick(TObject *Sender);
   void __fastcall BtnRutasClick(TObject *Sender);
   void __fastcall BtnHistorialClick(TObject *Sender);
-  void __fastcall btnCalcularRutaOptimaClick(TObject *Sender);
-  void __fastcall btnLimpiarCamposClick(TObject *Sender);
-  void __fastcall PanelMapaResize(TObject *Sender);
-  void __fastcall MapaOverlayPaint(TObject *Sender);
+  void __fastcall calcularRutaOptimaClick(TObject *Sender);
 
 private:
-  SistemaLogistico sistemaLogistico;
   TPaintBox *mapaOverlay;
   TEdit *txtCiudadId;
   TEdit *txtCiudadNombre;
@@ -78,10 +71,7 @@ private:
   bool hayRutaDibujada;
   void inicializarInterfazLogistica();
   void actualizarCombosCiudades(Ciudad* ciudadesUI);
-  void redibujarMapa();
   TPoint puntoCiudadEnMapa(int id) const;
-  void pintarConexiones(TCanvas *canvas);
-  void pintarRutaCalculada(TCanvas *canvas);
   void pintarCiudades(TCanvas *canvas);
   int obtenerIdCiudadSeleccionada(TComboBox *combo);
   void construirVistaCiudades();
@@ -100,6 +90,7 @@ private:
 
 public:
   __fastcall TForm1(TComponent *Owner);
+  void __fastcall TForm1::MapaOverlayPaint(TObject *Sender);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm1 *Form1;

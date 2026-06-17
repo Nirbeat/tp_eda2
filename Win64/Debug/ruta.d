@@ -344,4 +344,20 @@
   c:\program\ files\ (x86)\embarcadero\studio\23.0\include\windows\vcl\Vcl.Mask.hpp \
   c:\program\ files\ (x86)\embarcadero\studio\23.0\include\windows\rtl\System.MaskUtils.hpp \
   c:\program\ files\ (x86)\embarcadero\studio\23.0\include\windows\vcl\Vcl.ListActns.hpp \
-  ruta\ruta.cpp ruta/ruta.h ruta/../structs.h
+  ruta\ruta.cpp ruta\ruta.h mapa\mapa.h mapa/../ciudad/ciudad.h \
+  ciudad/../structs.h \
+  c:\program\ files\ (x86)\embarcadero\studio\23.0\include\dinkumware64\fstream \
+  c:\program\ files\ (x86)\embarcadero\studio\23.0\include\dinkumware64\filesystem \
+  c:\program\ files\ (x86)\embarcadero\studio\23.0\include\dinkumware64\algorithm \
+  c:\program\ files\ (x86)\embarcadero\studio\23.0\include\dinkumware64\xheap \
+  c:\program\ files\ (x86)\embarcadero\studio\23.0\include\dinkumware64\chrono \
+  c:\program\ files\ (x86)\embarcadero\studio\23.0\include\dinkumware64\ratio \
+  c:\program\ files\ (x86)\embarcadero\studio\23.0\include\dinkumware64\Dinkum/threads/xtimec.h \
+  c:\program\ files\ (x86)\embarcadero\studio\23.0\include\dinkumware64\Dinkum/threads/xthrcommon.h \
+  c:\program\ files\ (x86)\embarcadero\studio\23.0\include\dinkumware64\codecvt \
+  c:\program\ files\ (x86)\embarcadero\studio\23.0\include\dinkumware64\locale \
+  c:\program\ files\ (x86)\embarcadero\studio\23.0\include\dinkumware64\xlocbuf \
+  c:\program\ files\ (x86)\embarcadero\studio\23.0\include\dinkumware64\xlocmes \
+  c:\program\ files\ (x86)\embarcadero\studio\23.0\include\dinkumware64\xlocmon \
+  c:\program\ files\ (x86)\embarcadero\studio\23.0\include\dinkumware64\xloctime \
+  c:\program\ files\ (x86)\embarcadero\studio\23.0\include\dinkumware64\list

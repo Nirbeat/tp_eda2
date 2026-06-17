@@ -350,4 +350,5 @@
   c:\program\ files\ (x86)\embarcadero\studio\23.0\include\windows\vcl\Vcl.Imaging.pngimage.hpp \
   c:\program\ files\ (x86)\embarcadero\studio\23.0\include\windows\rtl\System.ZLib.hpp \
   c:\program\ files\ (x86)\embarcadero\studio\23.0\include\windows\vcl\Vcl.Imaging.pnglang.hpp \
-  C:\Users\Noxie-PC\OneDrive\Escritorio\UPE\EDA2\tp_eda2/Logistica.h
+  c:\program\ files\ (x86)\embarcadero\studio\23.0\include\windows\vcl\Vcl.Grids.hpp \
+  ciudad\ciudad.h ciudad/../structs.h mapa\mapa.h ruta\ruta.h

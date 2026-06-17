@@ -525,6 +525,7 @@ object Form1: TForm1
           ParentBackground = False
           ParentFont = False
           TabOrder = 3
+          OnClick = calcularRutaOptimaClick
           OnMouseEnter = PanelMouseEnter
           OnMouseLeave = PanelMouseLeave
         end

@@ -6,7 +6,7 @@ Ciudad::Ciudad() {
 	nombre = "";
 	coordenadas.x = 0;
 	coordenadas.y = 0;
-    activa = true;
+	activa = true;
 }
 
 Ciudad::Ciudad(int _id, const std::string& _nombre, Coordenadas _coordenadas) {
