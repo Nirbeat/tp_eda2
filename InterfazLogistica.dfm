@@ -1618,8 +1618,8 @@ object Form1: TForm1
     end
   end
   object pnlCiudades: TPanel
-    Left = 592
-    Top = 376
+    Left = 528
+    Top = 363
     Width = 185
     Height = 41
     Caption = 'pnlCiudades'
