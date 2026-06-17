@@ -1,17 +1,17 @@
 #ifndef RUTA_H
 #define RUTA_H
 
-#include <mapa.h>
-#include <structs.h>
-
+#include "../structs.h"
 class Ruta {
 private:
-   Mapa *mapa;
+  bool activa;
 
 public:
-	Ruta();
-    Ruta(Mapa* mapa);
-	struct ResultadoRuta encontrarRuta(int** matriz, int cantidadCiudad, int idOrigen, int idDestino);
+  Ruta() : activa(true) {}
+
+  void dibujarRuta(Coordenadas origen, Coordenadas destino);
+  bool cambiarEstadoRuta();
+  bool estaActiva() const { return activa; };
 };
 
 #endif

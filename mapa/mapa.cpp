@@ -1,121 +1,55 @@
-﻿#include "mapa.h"
-#include <cstdio>
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include <string>
+#include "mapa.h"
 
-// Constructor
-Mapa::Mapa() {
-  // Inicializamos punteros en nullptr para evitar problemas en el destructor
-  listaCiudades = nullptr;
-  matrizAdyacencia = nullptr;
+// PARA LAS 7 CIUDADES QUE PROPUSE, ESTA MATRIZ YA ESTARÍA COMPLETA
+// PROPONGO, CUANDO SE HAGA EL ALGORITMO, QUE SE PRUEBE PRIMERO SOLO
+// ENTRE LAS 3 PRINCIPALES (INDICES DEL 0 AL 2), PROBAR CORTAR LA CONEXION
+// Y VER QUE BUSQUE EL CAMINO; LUEGO AGREGAR UNA 4TA CIUDAD (NODO INTERMEDIO)
+// Y VER QUE LA USE EN VEZ DE USAR EL NODO PRINCIPAL (QUE ESTARÍA MÁS LEJOS)
+// SI EN ESE CASO ANDA, DEBERIA FUNCIONAR CON LAS 7 CIUDADES; SI ANDA CON LAS
+// 7, HACEMOS LA MATRIZ DE TODAS LAS QUE PROPUSO MATI Y DEBERIA ANDAR IGUAL
+void Mapa::setMatriz() {
+  // -1 INDICA QUE NO HAY CONEXION
+  int matriz[7][7] = {
+      {0, 335, 504, 314, 277, 105, -1}, {335, 0, 312, 122, -1, -1, 607},
+      {504, 312, 0, -1, 331, 302, 338}, {314, 122, -1, 0, -1, -1, -1},
+      {277, -1, 331, -1, 0, -1, -1},    {105, -1, 302, -1, -1, 0, -1},
+      {-1, 607, 338, -1, -1, -1, 0}};
 
-  // 1-se lee el archivo de la matriz de adyacencia y se cuentan la cantidad
-  // de registros segun saltos de linea
-  std::ifstream matriz("archivos/matriz.dat");
-  if (!matriz.is_open()) {
-    matriz.open("archivos/matriz.dat");
-  }
-
-  int lineas = 0;
-  std::string linea;
-  while (std::getline(matriz, linea)) {
-    lineas++;
-  }
-
-  cantidadCiudades = lineas;
-
-  // === 1. PEDIMOS LA MEMORIA PARA LA MATRIZ DE ADYACENCIA ===
-  matrizAdyacencia = new int *[cantidadCiudades];
-  for (int i = 0; i < cantidadCiudades; i++) {
-    matrizAdyacencia[i] = new int[cantidadCiudades];
-  }
-
-  matriz.clear();
-  matriz.seekg(0, std::ios::beg);
-
-  int fila = 0;
-  while (std::getline(matriz, linea)) {
-	std::stringstream ss(linea);
-    int valor;
-	int columna = 0;
-
-	// el ">>" se saltea espacios en blanco y tabs
-	while (ss >> valor && columna < cantidadCiudades) {
-      matrizAdyacencia[fila][columna] = valor;
-      columna++;
-    }
-    fila++;
-  }
-
-  matriz.close();
-
-  listaCiudades = new Ciudad[cantidadCiudades];
-
-  std::ifstream archCiudades("archivos/ciudades.dat");
-
-  if (archCiudades.is_open()) {
-    std::string lineaCiudad;
-    int idx = 0;
-
-    while (std::getline(archCiudades, lineaCiudad) && idx < cantidadCiudades) {
-      // 1. Convertimos la línea de texto en un "flujo de datos" de C++
-      std::stringstream fila(lineaCiudad);
-
-      // Variables temporales para extraer los datos como strings primero
-      std::string strId, nombre, strX, strY;
-
-      // 2. Extraemos cada pedazo usando el ';' como guillotina
-      std::getline(fila, strId, ';');  // Saca el ID como texto
-      std::getline(fila, nombre, ';'); // Saca el Nombre
-      std::getline(fila, strX, ';');   // Saca la X como texto
-      std::getline(fila, strY, ';');   // Saca la Y como texto
-
-      // 3. Convertimos los strings a los números reales que corresponden
-      int id = std::stoi(strId); // stoi = String To Integer
-      int x = std::stoi(strX);
-      int y = std::stoi(strY);
-      // 4. Armamos las coordenadas e instanciamos la ciudad en el array
-      Coordenadas coords = {(int)x, (int)y};
-      listaCiudades[idx] = Ciudad(id, nombre, coords);
-      idx++; // Avanzamos al siguiente casillero del array dinámico
-    }
-    archCiudades.close();
-  }
-}
-
-// Destructor
-Mapa::~Mapa() {
-  if (listaCiudades != nullptr) {
-    delete[] listaCiudades;
-  }
-  if (matrizAdyacencia != nullptr) {
-    for (int i = 0; i < cantidadCiudades; i++) {
-      delete[] matrizAdyacencia[i];
-    }
-    delete[] matrizAdyacencia;
-  }
-}
-
-void Mapa::actualizarCantidadCiudades(int valor) {
-  cantidadCiudades += valor; // se suma positivo o negativo, siempre 1
-}
-
-void Mapa::pasarListaCiudades(Ciudad ciudadesInterfaz[]) {
-  // Usamos un contador propio para el array de la UI
-  int indiceUI = 0;
-
-  for (int i = 0; i < cantidadCiudades; i++) {
-
-    if (listaCiudades[i].obtenerEstado() == true) {
-
-      ciudadesInterfaz[indiceUI] = listaCiudades[i];
-      indiceUI++;
+  for (int i = 0; i < 7; i++) {
+    for (int j = 0; i < 7; i++) {
+      this->matrizAdyacencia[i][j] = matriz[i][j];
     }
   }
 }
 
-int Mapa::obtenerCantidadCiudades() { return cantidadCiudades; }
+// ESTE METODO NOS PERMITE CALCULAR LA DISTANCIA NODO A NODO, SE DEBERIA
+// LLAMAR SIEMPRE QUE SE ENCUENTREN DOS NODOS ADYACENTES
+int Mapa::distanciaNodos(int idOrigen, int idDestino) {
+  return this->matrizAdyacencia[idOrigen][idDestino];
+}
 
-int **Mapa::obtenerMatrizAdyacencia() { return matrizAdyacencia; }
+// ESTE METODO CARGA LOS NODOS
+void Mapa::setNodos() {
+
+  // con este va a haber que pelearse un poco porque tenemos que:
+  // 1- o bien leer de un archivo
+  // 2- o bien hardcodear las ciduades en la carga
+
+  // ESTE CODIGO CLARAMENTE NO FUNCIONA PERO ES LO QUE HARIA EL METODO
+  //   this->nodos = {
+  //       {"calafate", {0, 0}, 0},          {"gobernador gregores", {0, 0}, 1},
+  //       {"puerto san julian", {0, 0}, 2}, {"corpen", {0, 0}, 3},
+  //       {"alke guer", {0, 0}, 4},         {"gendarme barreto", {0, 0}, 5},
+  //       {"pico truncado", {0, 0}, 6}};
+}
+
+// ESTOS DOS MÉTODOS QUE SIGUEN NO SE SI IMPLEMENTARLOS ACA LLAMANDO A LA
+// LIBRERIA QUE HACE LA UI O SI HACERLO DIRECTAMENTE EN LA LIBRERIA,
+// PROBLEMAS DEL FUTURO, POR AHORA LO DEJAMOS
+void Mapa::ubicarNodos() {
+  // recorremos el array de nodos y ubicamos todas las ciudades en el mapa
+  // extrayendo las coordenadas
+}
+void Mapa::cargarImagen() {
+  // levantamos la imagen de fondo accediendo al this->imagen
+}
