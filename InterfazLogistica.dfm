@@ -1590,15 +1590,6 @@ object Form1: TForm1
         end
       end
     end
-    object pnlCiudades: TPanel
-      Left = 488
-      Top = 336
-      Width = 185
-      Height = 41
-      Caption = 'pnlCiudades'
-      TabOrder = 3
-      OnClick = BtnCiudadesClick
-    end
   end
   object pnlTitulo: TPanel
     Left = 0
@@ -1625,5 +1616,13 @@ object Form1: TForm1
       ParentFont = False
       ExplicitWidth = 218
     end
+  end
+  object pnlCiudades: TPanel
+    Left = 592
+    Top = 376
+    Width = 185
+    Height = 41
+    Caption = 'pnlCiudades'
+    TabOrder = 3
   end
 end
