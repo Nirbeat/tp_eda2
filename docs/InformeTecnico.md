@@ -132,30 +132,36 @@ Recibe un puntero al `Mapa` en su constructor y expone `encontrarRuta()` que eje
 | Método | Descripción |
 |---|---|
 | `encontrarRuta(matriz, n, origen, destino)` | Ejecuta Dijkstra y devuelve un `ResultadoRuta` |
+| `guardarEnHistorial(resultado, ciudadesUI[])` | Escribe el resultado en `historial.dat` en modo append |
 
 ---
 
 ## 5. Algoritmo de Dijkstra
 
-El algoritmo se aplica sobre la matriz de adyacencia dinámica. Recibe la matriz, la cantidad de ciudades, el ID de origen y el ID de destino, y devuelve el camino de menor costo.
+El algoritmo está implementado en `Ruta::encontrarRuta()`. Recibe la matriz de adyacencia, la cantidad de ciudades, el ID de origen y el ID de destino, y devuelve un `ResultadoRuta`.
 
-**Arrays auxiliares utilizados:**
+**Arrays auxiliares:**
 
-- `distancias[]` — se inicializa con `2.000.000.000` (valor que simula infinito) para todos los nodos excepto el origen, que arranca en `0`.
-- `visitados[]` — flags booleanos, todos en `false` al inicio.
-- `padres[]` — se inicializa en `-1` para todos. Guarda desde qué nodo se llegó a cada uno, lo que permite reconstruir el camino al final recorriendo este array hacia atrás.
+- `distancias[]` — inicializado con `INT_MAX` (de `<climits>`) para todos los nodos excepto el origen, que arranca en `0`. Se usa `INT_MAX` en vez de un número hardcodeado para que sea portable.
+- `visitados[]` — flags booleanos en `false` al inicio.
+- `padres[]` — inicializado en `-1` para todos. Guarda desde qué nodo se llegó a cada uno, lo que permite reconstruir el camino al final recorriendo este array hacia atrás.
 
 **Pasos del algoritmo:**
 
-1. Inicializar los tres arrays auxiliares como se describió arriba.
-2. En cada iteración, buscar el nodo no visitado con menor distancia acumulada. Solo se evalúan ciudades con `obtenerEstado() == true`.
-3. Marcar ese nodo como visitado. Si es el destino, terminar.
-4. Para cada vecino del nodo actual: si está activo, no fue visitado, hay conexión directa en la matriz (valor distinto de `-1`) y la distancia acumulada más el peso de la arista mejora la distancia conocida del vecino, actualizar.
-5. Una vez que el destino es procesado, recorrer `padres[]` desde el destino hacia el origen para reconstruir el camino. Primero se cuenta cuántos nodos lo componen, luego se reserva el array dinámico con ese tamaño exacto y se llena al revés.
+1. Inicializar los tres arrays.
+2. En cada iteración, buscar el nodo no visitado con menor distancia acumulada (`u`).
+3. Si `u == -1` o `distancias[u] == INT_MAX`, las ciudades restantes son inaccesibles — cortar el bucle.
+4. Si `u == idDestino`, ya se encontró el camino óptimo — cortar el bucle para no seguir explorando innecesariamente.
+5. Marcar `u` como visitado y relajar sus aristas: para cada vecino `v` no visitado donde `matriz[u][v] > 0` (hay conexión real), si `distancias[u] + matriz[u][v] < distancias[v]`, actualizar. La condición `matriz[u][v] != -1 && matriz[u][v] > 0` descarta tanto las celdas sin conexión como la diagonal principal.
+6. Antes de sumar, se verifica que `distancias[u] != INT_MAX` para evitar desborde aritmético.
+
+**Reconstrucción del camino:**
+
+Si el destino quedó con `INT_MAX`, se devuelve un `ResultadoRuta` con `indices = nullptr` y `distancia = -1` como señal de error para la interfaz. Si hay camino, se recorre `padres[]` desde el destino hacia el origen para contar los nodos, se reserva el array con ese tamaño exacto y se carga al revés.
 
 **Complejidad:** O(n²) con matriz de adyacencia y búsqueda lineal del mínimo, donde `n` es la cantidad de ciudades.
 
-**Manejo de rutas inexistentes:** si al finalizar la distancia al destino sigue siendo `2.000.000.000`, significa que no hay camino posible entre los nodos dados y `distanciaTotal` queda en `-1`.
+**Liberación de memoria:** los tres arrays auxiliares se liberan con `delete[]` en ambos caminos de ejecución (ruta encontrada y ruta no encontrada), evitando leaks.
 
 ---
 
@@ -186,7 +192,13 @@ La matriz de adyacencia completa. Cada línea es una fila, valores separados por
 
 ### historial.dat
 
-Almacena el registro de las rutas calculadas durante la sesión. Se escribe cuando el usuario presiona **Guardar Historial** desde la interfaz.
+Almacena el registro de las rutas calculadas. Se escribe mediante `Ruta::guardarEnHistorial()`, que recibe el `ResultadoRuta` y el array de ciudades. El formato de cada línea es:
+
+```
+origen;destino;ciudad1 -> ciudad2 -> ciudad3;distanciaTotal
+```
+
+Se abre el archivo en modo `std::ios::app` para agregar sin pisar los registros anteriores. Si el resultado tiene `indices == nullptr` o `cantidadNodosRecorridos <= 0`, la función no escribe nada.
 
 ---
 
