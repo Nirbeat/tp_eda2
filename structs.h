@@ -6,4 +6,9 @@ struct Coordenadas {
   int y;
 };
 
+struct ResultadoRuta{
+	int cantidadNodosRecorridos;
+	int* indices;
+	int distancia;
+};
 #endif

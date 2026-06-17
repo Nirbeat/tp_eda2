@@ -4,10 +4,20 @@
 #include "../structs.h"
 
 class Ciudad {
-public:
-  char nombre[30];
+private:
+  std::string nombre;
   struct Coordenadas coordenadas;
   int id;
+  bool activa;
+
+public:
+  Ciudad();
+	Ciudad(int id, const std::string& nombre, Coordenadas coordenadas);
+  std::string obtenerNombre();
+  struct Coordenadas obtenerCoordenadas();
+  int obtenerId();
+  bool obtenerEstado();
+  void cambiarEstado();
 };
 
 #endif

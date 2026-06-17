@@ -1,0 +1,53 @@
+#include <iostream>
+#include <fstream>
+#include <cstring>
+using namespace std;
+
+struct ciudad {
+    char nombre[50];
+};
+
+int main() {
+    // Lista de ciudades a guardar
+    const char* ciudades[] = {
+        "Perito Moreno",
+        "Puerto Deseado",
+        "Gregores",
+        "Puerto Santa Cruz",
+        "El Calafate",
+        "Rio Gallegos",
+        "Rio Turbio",
+        "Pico Truncado",
+        "Fitz Roy",
+        "Caleta Olivia",
+        "Puerto San Julian",
+        "El Chalten",
+        "Piedra Buena",
+        "Guer Aike",
+        "Esperanza",
+        "El Zurdo",
+        "El Saldo"
+    };
+
+    ofstream archivo("ciudades.dat", ios::binary | ios::app);
+
+    if (!archivo) {
+        cout << "Error al abrir el archivo.\n";
+        return 1;
+    }
+
+    // Guardar cada ciudad en el archivo binario
+    for (int i = 0; i < 18; i++) {
+        ciudad c;
+
+        strcpy(c.nombre, ciudades[i]);
+
+        archivo.write(reinterpret_cast<char*>(&c), sizeof(ciudad));
+    }
+
+    archivo.close();
+
+    cout << "Ciudades agregadas correctamente.\n";
+
+    return 0;
+}
